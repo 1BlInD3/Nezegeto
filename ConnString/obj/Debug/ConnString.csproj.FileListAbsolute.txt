@@ -1,0 +1,10 @@
+C:\Users\balindattila\source\repos\ConnString\ConnString\bin\Debug\ConnString.exe.config
+C:\Users\balindattila\source\repos\ConnString\ConnString\bin\Debug\ConnString.exe
+C:\Users\balindattila\source\repos\ConnString\ConnString\bin\Debug\ConnString.pdb
+C:\Users\balindattila\source\repos\ConnString\ConnString\obj\Debug\ConnString.csprojAssemblyReference.cache
+C:\Users\balindattila\source\repos\ConnString\ConnString\obj\Debug\ConnString.Form1.resources
+C:\Users\balindattila\source\repos\ConnString\ConnString\obj\Debug\ConnString.Properties.Resources.resources
+C:\Users\balindattila\source\repos\ConnString\ConnString\obj\Debug\ConnString.csproj.GenerateResource.cache
+C:\Users\balindattila\source\repos\ConnString\ConnString\obj\Debug\ConnString.csproj.CoreCompileInputs.cache
+C:\Users\balindattila\source\repos\ConnString\ConnString\obj\Debug\ConnString.exe
+C:\Users\balindattila\source\repos\ConnString\ConnString\obj\Debug\ConnString.pdb
