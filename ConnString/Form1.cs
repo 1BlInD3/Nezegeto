@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 
+
 namespace ConnString
 {
     public partial class Form1 : Form
@@ -18,6 +19,10 @@ namespace ConnString
         {
             InitializeComponent();
         }
+
+        ConnectionStrings connectionStrings = new ConnectionStrings();
+        SqlQueries sqlQueries = new SqlQueries();
+        int index = 0;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -51,31 +56,34 @@ namespace ConnString
 
              dataGridView2.DataSource = dataTable2;
              sqlConnection2.Close();*/
-            string ConString = ConfigurationManager.ConnectionStrings["inner"].ConnectionString;
-            string sqlQuery = "SELECT ID, Nev, Torzsszam, TartozasJellege, Osszeg, VegrehajtasiKTSG, " +
-                "RogzDatum, ElsoBefizetesDatum, Futamido, Statusz, FigyelmeztetesDatum, VegrehajtasDatum, " +
-                "Megjegyzes FROM dbo.DanyTartozasok WHERE Statusz <>5  AND Statusz <>2 ORDER BY ID DESC";
-            string connection2 = ConfigurationManager.ConnectionStrings["mvMeres"].ConnectionString;
-            string sqlQurey2 = "SELECT MertErtek, Datum FROM dbo.Hal2EllenallasTemp ORDER BY Datum DESC";
-            string sqlQuery3 = "SELECT name FROM sys.tables ORDER BY name";
-//string sqlQuery4 = "SELECT * FROM sysobjects WHERE xtype = 'U'";
-
-
+           
             DataTable dt = new DataTable();
-            loadGridView(ConString, sqlQuery).Fill(dt);
+            loadGridView(connectionStrings.ConString, sqlQueries.sqlQuery).Fill(dt);
             dataGridView1.DataSource = dt;
 
             DataTable dt2 = new DataTable();
-            loadGridView(connection2, sqlQurey2).Fill(dt2);
+            loadGridView(connectionStrings.ConString2, sqlQueries.sqlQurey2).Fill(dt2);
             dataGridView2.DataSource = dt2;
 
-            DataTable dt3 = new DataTable();
-            loadGridView(ConString, sqlQuery3).Fill(dt3);
-            // comboBox1.Items.Add(dt3);
-            foreach (DataRow i in dt3.Rows) {
-                comboBox1.Items.Add(i["name"].ToString());
+        /*    if (index == 0)
+            {
+                DataTable dt3 = new DataTable();
+                loadGridView(connectionStrings.ConString, sqlQueries.sqlQuery3).Fill(dt3);
+                foreach (DataRow i in dt3.Rows)
+                {
+                    comboBox1.Items.Add(i["name"].ToString());
+                }
             }
-            dataGridView3.DataSource = dt3;
+            else if(index == 1){
+                DataTable dt3 = new DataTable();
+                loadGridView(connectionStrings.ConString2, sqlQueries.sqlQuery3).Fill(dt3);
+                foreach (DataRow i in dt3.Rows)
+                {
+                    comboBox1.Items.Add(i["name"].ToString());
+                }
+
+            }*/
+           
 
         }
         private SqlDataAdapter loadGridView(string conString, string sqlQuery) {
@@ -88,6 +96,53 @@ namespace ConnString
             sqlConnection.Close();
             return sqlDataAdapter;
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (index == 0)
+            {
+                DataTable dt = new DataTable();
+                loadGridView(connectionStrings.ConString, sqlQueries.sqlQuery4 + comboBox1.Text).Fill(dt);
+                dataGridView3.DataSource = dt;
+            }
+            else if(index == 1){
+               
+                DataTable dt = new DataTable();
+                loadGridView(connectionStrings.ConString2, sqlQueries.sqlQuery4 + comboBox1.Text).Fill(dt);
+                dataGridView3.DataSource = dt;
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex == 0)
+            {
+                dataGridView3.DataSource = null;
+                comboBox1.Items.Clear();
+                comboBox1.Text = "";
+                DataTable dt3 = new DataTable();
+                loadGridView(connectionStrings.ConString, sqlQueries.sqlQuery3).Fill(dt3);
+                foreach (DataRow i in dt3.Rows)
+                {
+                    comboBox1.Items.Add(i["name"].ToString());
+                }
+                index = 0;
+                
+            }
+
+            else { 
+                index = 1;
+                comboBox1.Text = "";
+                comboBox1.Items.Clear();
+                dataGridView3.DataSource = null;
+                DataTable dt3 = new DataTable();
+                loadGridView(connectionStrings.ConString2, sqlQueries.sqlQuery3).Fill(dt3);
+                foreach (DataRow i in dt3.Rows)
+                {
+                    comboBox1.Items.Add(i["name"].ToString());
+                }
+            }
         }
     }
 }
