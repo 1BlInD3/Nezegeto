@@ -12,5 +12,7 @@ namespace ConnString
         public string ConString = ConfigurationManager.ConnectionStrings["inner"].ConnectionString;
         
         public string ConString2 = ConfigurationManager.ConnectionStrings["mvMeres"].ConnectionString;
+
+        public string ConString3 = ConfigurationManager.ConnectionStrings["konyves"].ConnectionString;
     }
 }

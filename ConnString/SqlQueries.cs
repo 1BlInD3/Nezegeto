@@ -15,5 +15,6 @@ namespace ConnString
         public string sqlQurey2 = "SELECT MertErtek, Datum FROM dbo.Hal2EllenallasTemp ORDER BY Datum DESC";
         public string sqlQuery3 = "SELECT name FROM sys.tables ORDER BY name";
         public string sqlQuery4 = "SELECT * FROM ";
+        public string sqlJoker = "SELECT * FROM Books";
     }
 }
